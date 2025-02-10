@@ -1,7 +1,9 @@
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const reasonsDiv = document.getElementById("reasons");
-const reasonsForm = document.getElementById("reasonsForm");
+const selectAll = document.getElementById("selectAll");
+const reasonsList = document.getElementById("reasonsList");
+const confirmBtn = document.getElementById("confirmBtn");
 
 let yesSize = 20; // Kích thước ban đầu của nút "Có"
 
@@ -19,14 +21,18 @@ yesBtn.addEventListener("click", function () {
     reasonsDiv.classList.remove("hidden");
 });
 
-// Xử lý sự kiện khi nhấn "Xác nhận yêu anh"
-reasonsForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const checkedReasons = document.querySelectorAll('input[name="reason"]:checked');
-    
-    if (checkedReasons.length > 0) {
-        alert("Em đã xác nhận yêu anh rồi nhé! 🥰💖");
+// Xử lý sự kiện khi click vào checkbox
+selectAll.addEventListener("change", function () {
+    if (selectAll.checked) {
+        reasonsList.classList.remove("hidden");
+        confirmBtn.classList.remove("hidden");
     } else {
-        alert("Hãy chọn ít nhất một lý do em yêu anh đi nè! 😆");
+        reasonsList.classList.add("hidden");
+        confirmBtn.classList.add("hidden");
     }
+});
+
+// Khi bấm nút xác nhận
+confirmBtn.addEventListener("click", function () {
+    alert("Em đã xác nhận yêu anh rồi nhé! 🥰💖");
 });
